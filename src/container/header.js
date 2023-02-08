@@ -15,10 +15,16 @@ export default function HeaderContainer({ children }) {
                     <Header.ButtonLink to={ROUTES.REGISTRATION}>Registration</Header.ButtonLink>
                     <Header.ButtonLink to={ROUTES.CONTACT}>Contact</Header.ButtonLink>
                 </Header.Menu>
+              
+                <Header.AuthButton>
+                <Header.ProfileSignUp to={ROUTES.SIGN_UP}>
+                    <Header.Text>SignUp</Header.Text>
+                </Header.ProfileSignUp>
 
                 <Header.Profile to={ROUTES.SIGN_IN}>
                     <Header.Text>Login</Header.Text>
                 </Header.Profile>
+                </Header.AuthButton>
 
                 <Header.MenuLogo src="images/icons/menu-icon.svg" onClick={() => setBurgerStatus(true)} alt="menu-logo" />
                 <Header.BurgerMenu show={burgerStatus}>
@@ -29,6 +35,7 @@ export default function HeaderContainer({ children }) {
                         <Header.MenuButtonLink to={ROUTES.REGISTRATION} color="#FFF8D6">Registration</Header.MenuButtonLink>
                         <Header.MenuButtonLink to={ROUTES.CONTACT} color="#F1F7DE">Contact</Header.MenuButtonLink>
                         <Header.MenuButtonLink to={ROUTES.SIGN_IN} style={{ backgroundColor: '#000', color: '#fff' }} >Login</Header.MenuButtonLink>
+                        <Header.MenuButtonLink to={ROUTES.SIGN_UP} style={{ backgroundColor: '#fff', color: '#000' }} >SignUp</Header.MenuButtonLink>
                     </Header.Div>
                 </Header.BurgerMenu>
                 <Header.MenuBgImg src="images/menu-bg.svg" />

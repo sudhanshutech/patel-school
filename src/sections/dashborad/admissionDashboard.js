@@ -10,14 +10,14 @@ import * as ROUTES from '../../constants/routes';
 
 export default function AdmissionDashboard() {
     const [isThanks, setIsThanks] = useState(false);
-    const { data, showLoader  } = React.useContext(FirebaseUserContext);
+    const {data, showLoader  } = React.useContext(FirebaseUserContext);
     // const { data, showLoader } = UseFirestoreData("students");
 
     if(showLoader){ 
         return <LoaderContainer />
     }
     else if (!data || (data && !data.isDataSubmitted)) {
-        return <AdmissionContainer setIsThanks={setIsThanks} />;
+        return <AdmissionContainer setIsThanks={setIsThanks}/>;
     }
     else if (isThanks || (data && data.isDataSubmitted)) {
         return (

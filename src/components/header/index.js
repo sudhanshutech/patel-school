@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Container, Logo, Frame, Menu, ButtonLink, Profile, MenuLogo, BurgerMenu, Text, CrossButton, Div, MenuButtonLink, MenuBgImg
+    Container, Logo, Frame, Menu, ButtonLink, Profile, MenuLogo, BurgerMenu, Text, CrossButton, Div, MenuButtonLink, MenuBgImg, ProfileSignUp, AuthButton
 } from './styles/header';
 
 export default function Header({ children, ...restProps }) {
@@ -19,8 +19,16 @@ Header.Menu = function HeaderMenu({ children, ...restProps }) {
     return <Menu {...restProps}>{children}</Menu>;
 };
 
+Header.AuthButton = function HeaderAuthButton({ children, ...restProps }) {
+    return <AuthButton {...restProps}>{children}</AuthButton>;
+};
+
 Header.Profile = function HeaderProfile({ children, ...restProps }) {
     return <Profile {...restProps}>{children}</Profile>;
+};
+
+Header.ProfileSignUp = function HeaderProfile({ children, ...restProps }) {
+    return <ProfileSignUp {...restProps}>{children}</ProfileSignUp>;
 };
 
 Header.ButtonLink = function HeaderButtonLink({ children, ...restProps }) {

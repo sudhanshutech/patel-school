@@ -5,7 +5,10 @@ import AdmissionUpload from "../../components/admissionUpload";
 import { db, storage } from "../../lib/firebase.prod";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
-import { addDoc, serverTimestamp, collection } from "firebase/firestore";
+import { serverTimestamp, setDoc, doc } from "firebase/firestore";
+// import UseAuthListener from "../../hooks/use-auth-listener";
+import { FirebaseUserContext } from "../../context/firebase";
+//import prop types
 
 const INITIAL_VALUES = {
   name: "",
@@ -23,6 +26,8 @@ const INITIAL_VALUES = {
   nominationNumber: "",
   postOffice: "",
   fatherAnnualIncome: "",
+  isDataSubmitted: false,
+  fees: [],
 
   //set default value of medium
   admissionType: "Regular",
@@ -103,6 +108,7 @@ const STATE = [
 
 const CLASS = ["Nursery", "LKG", "UKG", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
 
+
 export default function AdmissionContainer({ setIsThanks }) {
   const [toggleState, setToggleState] = useState(1);
   const [values, setValues] = useState(INITIAL_VALUES);
@@ -110,6 +116,11 @@ export default function AdmissionContainer({ setIsThanks }) {
   const [checkClick, setCheckClick] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [isValid, setIsValid] = useState(false);
+  const { user} = React.useContext(FirebaseUserContext);
+
+  
+
+
 
   // use regex on input fields to validate
   const validate = (value, type) => {
@@ -212,13 +223,16 @@ export default function AdmissionContainer({ setIsThanks }) {
 
   // upload data
   const handleAdd = async (PersonalDetails) => {
-    await addDoc(collection(db, "students"), {
+  
+    await setDoc(doc(db, "students", user.uid), {
       ...PersonalDetails,
+      isDataSubmitted: true,
       timestamp: serverTimestamp(),
     });
-
+    console.log(typeof(user.uid));
+    console.log(user.uid);
     // to call new thanks component after adding data 
-    setIsThanks(true);
+   setIsThanks(true);
   };
 
   // upload files values to firebase storage
@@ -250,9 +264,9 @@ export default function AdmissionContainer({ setIsThanks }) {
           return "no file";
         }
       }))
-
+      const PersonalDetailsCopy = {...PersonalDetails}
       if (uploadFile) {
-        handleAdd(PersonalDetails)
+        handleAdd(PersonalDetailsCopy)
       }
 
     }

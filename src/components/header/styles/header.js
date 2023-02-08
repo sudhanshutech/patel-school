@@ -74,6 +74,13 @@ export const Menu = styled.div`
     }
 
 `
+export const AuthButton = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 216px;
+`
 export const Profile = styled(ReactRouterLink)`
     width: 98px;
     height: 100%;
@@ -93,6 +100,28 @@ export const Profile = styled(ReactRouterLink)`
         display: none;
     }
 `;
+
+export const ProfileSignUp = styled(ReactRouterLink)`
+    width: 98px;
+    height: 100%;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 21px 21px 0px 21px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+
+    p{
+        margin: 12px 18px 12px 23px;
+        color: #000000;
+    }
+    &:hover{
+        opacity: 0.7;
+    }
+    @media(max-width: 1000px){
+        display: none;
+    }
+`;
+
 export const MenuLogo = styled.img`
     display: none;
     cursor: pointer;
